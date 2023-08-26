@@ -1,0 +1,12 @@
+.post{
+    padding:20px;
+    display: flex;
+}
+.post__avatar img{
+    width: 20px;
+    border-radius: 15px;
+}
+.post__txt{
+    font-size: 10px;
+    color:white;
+}

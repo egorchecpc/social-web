@@ -1,0 +1,24 @@
+.profile{
+    grid-area: c;
+    background-color: grey;
+}
+
+.profile__cover img{
+    width: 100%;
+    height: auto;
+}
+.profile__info{
+    display: flex;
+    padding: 30px;
+}
+.profile__info img{
+    width:100%;
+}
+.profile__txt{
+    padding:5px 50px;
+}
+.profile__title{
+    font-weight: 800;
+    font-size: 20px;
+    margin-bottom: 10px;
+}
