@@ -1,9 +1,15 @@
 import s from './User.module.css';
+import {NavLink} from "react-router-dom";
 
-function Users() {
+function User(props) {
+    let path = "/Dialogs/" + props.id;
     return (
-        <div className={s.user}>Egor</div>
+        <div className={s.user}>
+            <NavLink to={path}>
+                {props.name}
+            </NavLink>
+        </div>
     );
 }
 
-export default Users;
+export default User;

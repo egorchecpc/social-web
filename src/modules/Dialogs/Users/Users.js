@@ -1,9 +1,14 @@
-import s from './Dialogs.module.css';
+import s from './Users.module.css';
+import User from './User/User'
 
-function Dialogs() {
+function Users(props) {
+    let users=props.userData.map((user)=><User name={user.name} id={user.id} />)
+
     return (
-       <div className={s.dialogs}>132</div>
+        <div className={s.users}>
+            {users}
+        </div>
     );
 }
 
-export default Dialogs;
+export default Users;

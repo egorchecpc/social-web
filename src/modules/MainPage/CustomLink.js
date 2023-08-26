@@ -1,17 +1,20 @@
-import Header from "../Header/Header";
-import Navbar from "../Navbar/Navbar";
-import {Outlet,Link} from "react-router-dom";
+import {Link, useMatch} from "react-router-dom";
 
 
-function Layout() {
+const CustomLink = ({children, to, ...props}) => {
+    const match=useMatch(to);
+    console.log({match})
     return (
         <>
-            <Header />
-            <Outlet />
-            <Navbar />
-
+           <Link to={to}
+                 style={{
+                     color: match ? 'gold' : 'white',
+                 }}
+               {...props}>
+               {children}
+           </Link>
         </>
     );
 }
 
-export {Layout};
+export {CustomLink};

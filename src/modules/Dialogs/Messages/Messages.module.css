@@ -1,4 +1,4 @@
-.dialogs{
-    grid-area: c;
-    background-color: aquamarine;
+.messages{
+    padding:20px;
+    border:3px solid
 }

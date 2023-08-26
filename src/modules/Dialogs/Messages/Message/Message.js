@@ -1,13 +1,11 @@
-import s from './Messages.module.css';
+import s from './Message.module.css';
 
-function Messages() {
+function Message(props) {
     return (
-        <div className={s.messages}>
-            <div className={s.message}>hi</div>
-            <div className={s.message}>hey</div>
-            <div className={s.message}>qq</div>
-        </div>
+            <div className={s.message}>
+                {props.text}
+            </div>
     );
 }
 
-export default Messages;
+export default Message;

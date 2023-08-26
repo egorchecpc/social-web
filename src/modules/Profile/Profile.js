@@ -1,8 +1,15 @@
-import s from './Profile.modules.css';
+import s from './Profile.module.css';
+import MyPosts from "./MyPosts/MyPosts";
+import ProfileInfo from "./ProfileInfo/ProfileInfo";
 
-function Profile() {
+
+function Profile(props) {
+
     return (
-       <div className={s.profile}></div>
+       <div className={s.profile}>
+            <ProfileInfo />
+           <MyPosts posts={props.profilePage.posts} postNewText={props.profilePage.postNewText} dispatch={props.dispatch}/>
+       </div>
     );
 }
 

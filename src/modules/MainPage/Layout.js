@@ -3,14 +3,15 @@ import Navbar from "../Navbar/Navbar";
 import {Outlet} from "react-router-dom";
 
 
-function MainPage() {
+function Layout() {
     return (
         <>
             <Header />
-            <Navbar />
             <Outlet />
+            <Navbar />
+
         </>
     );
 }
 
-export default MainPage;
+export {Layout};

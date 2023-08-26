@@ -1,12 +1,16 @@
 .post{
     padding:20px;
     display: flex;
+    align-items: center;
+    border:2px solid;
+    border-radius: 20px;
 }
 .post__avatar img{
-    width: 20px;
+    width: 80px;
     border-radius: 15px;
 }
 .post__txt{
-    font-size: 10px;
+    font-size: 20px;
     color:white;
+    padding: 0px 50px;
 }
