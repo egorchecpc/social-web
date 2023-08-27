@@ -1,7 +1,7 @@
 import React from 'react';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
-import store from './state/state'
+import store from './redux/reduxStore'
 import ReactDOM from "react-dom/client";
 import {BrowserRouter} from "react-router-dom";
 import App from "./App";
@@ -18,7 +18,9 @@ const renderAgain = (state) => {
 
 renderAgain(store.getState());
 
-store.subscribe(renderAgain);
+store.subscribe(()=>{
+    renderAgain(store.getState())
+});
 
 reportWebVitals();
 
