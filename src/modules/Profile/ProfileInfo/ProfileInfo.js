@@ -2,6 +2,7 @@ import s from './ProfileInfo.module.css';
 
 
 function ProfileInfo(props) {
+
     return (
         <div className={s.profile__info}>
             <div className={s.profile__cover}>

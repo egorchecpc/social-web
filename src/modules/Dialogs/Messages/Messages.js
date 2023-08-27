@@ -6,17 +6,18 @@ import {addMessageActionCreator,updateMessageActionCreator} from "../../../state
 
 function Messages(props) {
 
-    let newMessage = React.createRef()
-    let messages = props.messages.map((message) => <Message id={message.id} text={message.text}/>)
+    let newMessage = React.createRef();
+    let messages = props.messages.map((message) => <Message id={message.id} text={message.text}/>);
 
     let addMessage = () => {
-        let action = addMessageActionCreator()
-        props.dispatch(action)
+        let action = addMessageActionCreator();
+        props.dispatch(action);
     }
     let updateMessage = () => {
-        let action = updateMessageActionCreator(newMessage.current.value)
-        props.dispatch(action)
+        let action = updateMessageActionCreator(newMessage.current.value);
+        props.dispatch(action);
     }
+
     return (
         <div className={s.messages}>
             {messages}

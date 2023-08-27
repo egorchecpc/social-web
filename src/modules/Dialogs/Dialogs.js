@@ -4,10 +4,13 @@ import Messages from "./Messages/Messages";
 
 
 function Dialogs(props) {
+
     return (
         <div className={s.dialogs}>
             <Users userData={props.dialogsPage.userData}/>
-            <Messages messages={props.dialogsPage.messages} messageNewText={props.dialogsPage.messageNewText} dispatch={props.dispatch}/>
+            <Messages messages={props.dialogsPage.messages}
+                      messageNewText={props.dialogsPage.messageNewText}
+                      dispatch={props.dispatch}/>
         </div>
     );
 }

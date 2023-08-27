@@ -6,17 +6,17 @@ import {addPostActionCreator,updatePostActionCreator} from "../../../state/state
 
 function MyPosts(props) {
 
-    let newPostElement = React.createRef()
-    let posts = props.posts.map((post) => <Post id={post.id} message={post.message}/>)
+    let newPostElement = React.createRef();
+    let posts = props.posts.map((post) => <Post id={post.id} message={post.message}/>);
 
     let addPost = () => {
-        let action = addPostActionCreator()
-        props.dispatch(action)
+        let action = addPostActionCreator();
+        props.dispatch(action);
     }
 
     let onPostChange = () => {
-        let action = updatePostActionCreator(newPostElement.current.value)
-        props.dispatch(action)
+        let action = updatePostActionCreator(newPostElement.current.value);
+        props.dispatch(action);
 
     }
 
