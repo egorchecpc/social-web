@@ -1,7 +1,6 @@
 import s from './Messages.module.css';
 import Message from "./Message/Message";
 import React from "react";
-import {addMessageActionCreator,updateMessageActionCreator} from "../../../state/state";
 
 
 function Messages(props) {
@@ -10,12 +9,11 @@ function Messages(props) {
     let messages = props.messages.map((message) => <Message id={message.id} text={message.text}/>);
 
     let addMessage = () => {
-        let action = addMessageActionCreator();
-        props.dispatch(action);
+        props.addMessage()
     }
     let updateMessage = () => {
-        let action = updateMessageActionCreator(newMessage.current.value);
-        props.dispatch(action);
+        let text = newMessage.current.value
+        props.updateMessage(text)
     }
 
     return (

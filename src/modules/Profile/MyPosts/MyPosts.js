@@ -1,7 +1,6 @@
 import s from './MyPosts.module.css';
 import Post from "./Post/Post";
 import React from "react";
-import {addPostActionCreator,updatePostActionCreator} from "../../../state/state";
 
 
 function MyPosts(props) {
@@ -10,13 +9,12 @@ function MyPosts(props) {
     let posts = props.posts.map((post) => <Post id={post.id} message={post.message}/>);
 
     let addPost = () => {
-        let action = addPostActionCreator();
-        props.dispatch(action);
+        props.addPost()
     }
 
     let onPostChange = () => {
-        let action = updatePostActionCreator(newPostElement.current.value);
-        props.dispatch(action);
+        let text=newPostElement.current.value
+        props.updatePost(text)
 
     }
 
