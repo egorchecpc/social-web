@@ -1,0 +1,10 @@
+.user {
+    display: flex;
+}
+.userImg img{
+    width: 100px;
+}
+.followed {
+    height: 20px;
+    width: 50px;
+}

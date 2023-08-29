@@ -1,11 +1,10 @@
-import s from './User.module.css';
+import s from './Chat.module.css';
 import {NavLink} from "react-router-dom";
 
-function User(props) {
-
+function Chat(props) {
     let path = "/Dialogs/" + props.id;
     return (
-        <div className={s.user}>
+        <div className={s.chat}>
             <NavLink to={path}>
                 {props.name}
             </NavLink>
@@ -13,4 +12,4 @@ function User(props) {
     );
 }
 
-export default User;
+export default Chat;

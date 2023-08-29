@@ -6,7 +6,7 @@ import React from "react";
 function Messages(props) {
 
     let newMessage = React.createRef();
-    let messages = props.messages.map((message) => <Message id={message.id} text={message.text}/>);
+    let messages = props.messages.map((message) => <Message id={message.id} key={message.id} text={message.text}/>);
 
     let addMessage = () => {
         props.addMessage()

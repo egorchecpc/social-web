@@ -26,6 +26,11 @@ function Navbar() {
                         Music
                     </CustomLink>
                 </div>
+                <div className={s.navbar__link}>
+                    <CustomLink to='/users'>
+                        Users
+                    </CustomLink>
+                </div>
                 <div className={`${s.navbar__link} ${s['navbar__link--margin']}`}>
                     <CustomLink to='/settings'>
                         Settings

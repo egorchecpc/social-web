@@ -1,12 +1,12 @@
 import s from './Dialogs.module.css';
 import MessagesContainer from "./Messages/MessagesContainer";
-import UsersContainer from "./Users/UsersConteiner";
+import ChatsContainer from "./Chats/ChatsConteiner";
 
 
 function Dialogs(props) {
     return (
         <div className={s.dialogs}>
-            <UsersContainer/>
+            <ChatsContainer/>
             <MessagesContainer/>
         </div>
     );

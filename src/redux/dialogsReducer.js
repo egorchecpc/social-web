@@ -3,10 +3,11 @@ const UPDATE_MESSAGE = 'UPDATE-MESSAGE';
 
 
 let initialState = {
-    userData: [
+    chatData: [
         {id: 1, name: 'egor'},
         {id: 2, name: 'vika'},
         {id: 3, name: 'vita'},
+
     ],
     messages: [
         {id: 1, text: 'Hey man, i love u'},
@@ -23,19 +24,17 @@ const dialogsReducer = (state = initialState, action) => {
             let message = {
                 id: 13, text: state.messageNewText
             }
-            let stateCopy = {
+            return {
                 ...state,
-                messages: [...state.messages]
-            }
-            stateCopy.messages = [...state.messages]
-            stateCopy.messageNewText = '';
-            stateCopy.messages.push(message);
-            return stateCopy;
+                messages: [...state.messages, message],
+                messageNewText: ''
+            };
     }
         case UPDATE_MESSAGE: {
-            let stateCopy = {...state};
-            stateCopy.messageNewText = action.text;
-            return stateCopy;
+            return {
+                ...state,
+                messageNewText:action.text
+            };
         }
         default: return state;
     }
