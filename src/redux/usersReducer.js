@@ -1,9 +1,11 @@
 const FOLLOW = 'FOLLOW';
 const UNFOLLOW = 'UNFOLLOW';
 const SET_USERS = 'SET-USERS';
+const ADD_USERS = 'ADD-USERS'
 
 const initialState = {
-    users:[]
+    users:[],
+    pageNum: 100,
 }
 
 const usersReducer = (state = initialState, action) => {
@@ -32,6 +34,11 @@ const usersReducer = (state = initialState, action) => {
         case SET_USERS:
             const newUsers = action.users.filter(newUser => !state.users.some(existingUser => existingUser.id === newUser.id));
             return { ...state, users: [...state.users, ...newUsers]};
+        case ADD_USERS:
+            return {
+                ...state,
+                pageNum: ++state.pageNum
+            }
         default:
             return state;
     }
@@ -42,4 +49,5 @@ const usersReducer = (state = initialState, action) => {
 export const followAC = (id) => ({type: FOLLOW, id});
 export const unfollowAC = (id) => ({type: UNFOLLOW, id});
 export const setUsersAC = (users) => ({type: SET_USERS, users});
+export const addUsersAC = () => ({type:ADD_USERS})
 export default usersReducer;

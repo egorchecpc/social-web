@@ -4,11 +4,11 @@ import {useEffect} from "react";
 
 function User(props) {
     useEffect(() => {
-            console.log('http')
-            axios.get('https://social-network.samuraijs.com/api/1.0/users').then(response => {
+            axios.get(`https://social-network.samuraijs.com/api/1.0/users?count=3&page=${props.pageNum}`).then(response => {
                 props.setUsers(response.data.items);
             });
-    }, [props.users.length]);
+    }, [props.pageNum]);
+    const showUsers = ()=>props.addUsers();
     return (
         <div className={s.users}>
             { props.users.map(u =>
@@ -27,6 +27,7 @@ function User(props) {
                     }
                 </div>
             )}
+            <button onClick={showUsers} className={s.users__show}>Show More</button>
         </div>
 
     )
