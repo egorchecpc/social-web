@@ -1,5 +1,5 @@
 import s from './Users.module.css'
-
+import preloader from './../../img/loading_img.svg'
 
 function Users(props) {
     return (
@@ -20,7 +20,9 @@ function Users(props) {
                     }
                 </div>
             )}
-            <button onClick={props.showMoreUsers} className={s.users__show}>Show More</button>
+            {props.isFetching?
+                <img src={preloader} alt={preloader}/>:
+                <button onClick={props.showMoreUsers} className={s.users__show}>Show More</button>}
         </div>
 
     )
