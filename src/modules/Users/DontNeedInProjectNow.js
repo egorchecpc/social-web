@@ -1,6 +1,6 @@
 // import axios from "axios";
 // import {useEffect} from "react";
-// import Users from "./Users";
+// import Preloader from "./Preloader";
 //
 //
 // function UsersAPIComponent(props) {
@@ -12,7 +12,7 @@
 //     }, [props.pageNum]);
 //     const showMoreUsers = ()=> props.addUsers();
 //     return (
-//         <Users users={props.users}
+//         <Preloader users={props.users}
 //                follow={props.follow}
 //                unfollow={props.unfollow}
 //                showMoreUsers={showMoreUsers}/>

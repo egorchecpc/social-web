@@ -13,8 +13,8 @@ function App(props) {
         <div className="wrapper">
             <Routes>
                 <Route path='/' element={<Layout />}>
-                    <Route path='profile' element={<Profile/>}/>
-                    <Route path='dialogs' element={<Dialogs/>}/>
+                    <Route path='/profile/*' element={<Profile/>}/>
+                    <Route path='/dialogs/*' element={<Dialogs/>}/>
                     <Route path='users' element={<UsersContainer/>}/>
                 </Route>
             </Routes>

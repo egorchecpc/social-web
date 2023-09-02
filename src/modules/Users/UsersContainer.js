@@ -1,5 +1,5 @@
 import {connect} from "react-redux";
-import {addUsersAC, followAC, setUsersAC, toggleIsFetchingAC, unfollowAC} from "../../redux/usersReducer";
+import {addUsers, follow, setUsers, toggleIsFetching, unfollow} from "../../redux/usersReducer";
 import {useEffect} from "react";
 import axios from "axios";
 import Users from "./Users";
@@ -13,7 +13,7 @@ function UsersContainer(props) {
                 props.setUsers(response.data.items);
             });
     }, [props.pageNum]);
-    const showMoreUsers = ()=> props.addUsers();
+    const showMoreUsers = () => props.addUsers();
     return (
         <Users users={props.users}
                follow={props.follow}
@@ -22,8 +22,6 @@ function UsersContainer(props) {
                isFetching={props.isFetching}
         />
     )
-
-
 }
 
 const mapStateToProps = (state) => {
@@ -33,27 +31,27 @@ const mapStateToProps = (state) => {
         isFetching: state.usersPage.isFetching
     }
 }
-const mapDispatchToProps = (dispatch) => {
-    return {
-        follow: (id) => {
-            dispatch(followAC(id));
-        },
-        unfollow: (id) => {
-            dispatch(unfollowAC(id));
-        },
-        setUsers: (users) => {
-            dispatch(setUsersAC(users))
-        },
-        addUsers: () => {
-            dispatch(addUsersAC())
-        },
-        toggleIsFetching: (isFetching) => {
-            dispatch(toggleIsFetchingAC(isFetching))
-        }
-    }
+// const mapDispatchToProps = (dispatch) => {
+//     return {
+//         follow: (id) => {
+//             dispatch(followAC(id));
+//         },
+//         unfollow: (id) => {
+//             dispatch(unfollowAC(id));
+//         },
+//         setUsers: (users) => {
+//             dispatch(setUsersAC(users))
+//         },
+//         addUsers: () => {
+//             dispatch(addUsersAC())
+//         },
+//         toggleIsFetching: (isFetching) => {
+//             dispatch(toggleIsFetchingAC(isFetching))
+//         }
+//     }
+//
+// }
 
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(UsersContainer)
+export default connect(mapStateToProps, {addUsers, follow, unfollow, setUsers, toggleIsFetching})(UsersContainer)
 
 
