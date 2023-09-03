@@ -1,5 +1,6 @@
 import s from './Users.module.css'
 import Preloader from "../common/Preloader/Preloader";
+import {Link} from "react-router-dom";
 
 
 function Users(props) {
@@ -8,7 +9,11 @@ function Users(props) {
             {props.users.map(u =>
                 <div key={u.id} className={s.user}>
                     <div className={s.userImg}>
-                        <img src={u.photos.small!=null? u.photos.small:'https://clipart-library.com/img1/773345.png'} alt='user' />
+                        <Link to={'/profile/'+u.id}>
+                            <img
+                            src={u.photos.small != null ? u.photos.small : 'https://clipart-library.com/img1/773345.png'}
+                            alt='user'/>
+                        </Link>
                     </div>
                     <div className={s.userInfo}>
                         <div className={s.userName}>{u.name}</div>
