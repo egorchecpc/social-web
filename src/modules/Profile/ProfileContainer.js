@@ -1,28 +1,32 @@
 import {connect} from "react-redux";
 import {useEffect} from "react";
-import axios from "axios";
 import Profile from "./Profile";
-import {setUserProfile} from "../../redux/profileReducer";
+import {setUserProfile, toggleIsFetching} from "../../redux/profileReducer";
 import {useParams} from "react-router-dom";
+import UsersAPI from "../../api/api";
+import Preloader from "../common/Preloader/Preloader";
+
 
 function ProfileContainer(props) {
-    let { userId } = useParams();
-    if(!userId) userId=29629;
+    let {userId} = useParams();
+    if (!userId) userId = 29930;
     useEffect(() => {
-        axios.get(`https://social-network.samuraijs.com/api/1.0/profile/${userId}`)
-            .then(response => {
-                props.setUserProfile(response.data);
-            });
-    }, []);
-    return (
-        <Profile userProfile={props.userProfile}/>
-    )
+        props.toggleIsFetching(true)
+        UsersAPI.setUserProfileAPI(userId).then(data => {
+            props.toggleIsFetching(false)
+            props.setUserProfile(data);
+        });
+    }, [userId]);
+    return <>{props.isFetching ? <Preloader/> : < Profile userProfile={props.userProfile}/>}</>
+
 }
+
 const mapStateToProps = (state) => {
     return {
-        userProfile: state.profilePage.userProfile
+        userProfile: state.profilePage.userProfile,
+        isFetching: state.profilePage.isFetching
     }
 }
 
 
-export default connect(mapStateToProps, {setUserProfile})(ProfileContainer)
+export default connect(mapStateToProps, {setUserProfile, toggleIsFetching})(ProfileContainer)

@@ -1,6 +1,7 @@
 import s from './Users.module.css'
 import Preloader from "../common/Preloader/Preloader";
 import {Link} from "react-router-dom";
+import UsersAPI from "../../api/api";
 
 
 function Users(props) {
@@ -18,11 +19,12 @@ function Users(props) {
                     <div className={s.userInfo}>
                         <div className={s.userName}>{u.name}</div>
                         <div className={s.userStatus}>{u.status}</div>
-                        {/*<div className={s.userLocation}>{u.location.city} {u.location.country}</div>*/}
                     </div>
-                    {u.followed?
-                        <button onClick={()=>{props.unfollow(u.id)}} className={s.followed}>unfollow</button>:
-                        <button onClick={()=>{props.follow(u.id)}} className={s.followed}>follow</button>
+                    {u.followed
+                        ?<button onClick={()=> UsersAPI.unfollowAPI(u.id).then(data => {
+                                if (data.resultCode === 0) props.unfollow(u.id)})} className={s.followed}>unfollow</button>
+                        :<button onClick={()=> UsersAPI.followAPI(u.id).then(data => {
+                                if (data.resultCode === 0) props.follow(u.id)})} className={s.followed}>follow</button>
                     }
                 </div>
             )}

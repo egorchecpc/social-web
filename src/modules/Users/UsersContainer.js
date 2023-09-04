@@ -1,16 +1,15 @@
 import {connect} from "react-redux";
 import {addUsers, follow, setUsers, toggleIsFetching, unfollow} from "../../redux/usersReducer";
 import {useEffect} from "react";
-import axios from "axios";
 import Users from "./Users";
+import UsersAPI from "../../api/api";
 
 function UsersContainer(props) {
     useEffect(() => {
         props.toggleIsFetching(true)
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?count=3&page=${props.pageNum}`)
-            .then(response => {
+        UsersAPI.setUsersAPI(props.pageNum).then(data => {
                 props.toggleIsFetching(false)
-                props.setUsers(response.data.items);
+                props.setUsers(data.items);
             });
     }, [props.pageNum]);
     const showMoreUsers = () => props.addUsers();
@@ -31,26 +30,7 @@ const mapStateToProps = (state) => {
         isFetching: state.usersPage.isFetching
     }
 }
-// const mapDispatchToProps = (dispatch) => {
-//     return {
-//         follow: (id) => {
-//             dispatch(followAC(id));
-//         },
-//         unfollow: (id) => {
-//             dispatch(unfollowAC(id));
-//         },
-//         setUsers: (users) => {
-//             dispatch(setUsersAC(users))
-//         },
-//         addUsers: () => {
-//             dispatch(addUsersAC())
-//         },
-//         toggleIsFetching: (isFetching) => {
-//             dispatch(toggleIsFetchingAC(isFetching))
-//         }
-//     }
-//
-// }
+
 
 export default connect(mapStateToProps, {addUsers, follow, unfollow, setUsers, toggleIsFetching})(UsersContainer)
 
