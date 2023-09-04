@@ -10,10 +10,10 @@ function Users(props) {
             {props.users.map(u =>
                 <div key={u.id} className={s.user}>
                     <div className={s.userImg}>
-                        <Link to={'/profile/'+u.id}>
+                        <Link to={'/profile/' + u.id}>
                             <img
-                            src={u.photos.small != null ? u.photos.small : 'https://clipart-library.com/img1/773345.png'}
-                            alt='user'/>
+                                src={u.photos.small != null ? u.photos.small : 'https://clipart-library.com/img1/773345.png'}
+                                alt='user'/>
                         </Link>
                     </div>
                     <div className={s.userInfo}>
@@ -21,19 +21,35 @@ function Users(props) {
                         <div className={s.userStatus}>{u.status}</div>
                     </div>
                     {u.followed
-                        ?<button onClick={()=> UsersAPI.unfollowAPI(u.id).then(data => {
-                                if (data.resultCode === 0) props.unfollow(u.id)})} className={s.followed}>unfollow</button>
-                        :<button onClick={()=> UsersAPI.followAPI(u.id).then(data => {
-                                if (data.resultCode === 0) props.follow(u.id)})} className={s.followed}>follow</button>
+                        ? <button disabled={props.followingInProgress.some(id => id === u.id)} onClick={() => {
+                            props.toggleFollowingProgress(true, u.id);
+                            UsersAPI.unfollowAPI(u.id).then(data => {
+                                if (data.resultCode === 0) {
+                                    props.unfollow(u.id)
+                                }
+                                props.toggleFollowingProgress(false, u.id)
+                            })
+                        }
+                        } className={s.followed}>unfollow</button>
+                        : <button disabled={props.followingInProgress.some(id => id === u.id)} onClick={() => {
+                            props.toggleFollowingProgress(true, u.id);
+                            UsersAPI.followAPI(u.id).then(data => {
+                                if (data.resultCode === 0) {
+                                    props.follow(u.id)
+                                }
+                                props.toggleFollowingProgress(false, u.id);
+                            })
+                        }} className={s.followed}>follow</button>
                     }
                 </div>
             )}
-            {props.isFetching?
-                <Preloader />:
+            {props.isFetching ?
+                <Preloader/> :
                 <button onClick={props.showMoreUsers} className={s.users__show}>Show More</button>
             }
         </div>
 
     )
 }
+
 export default Users

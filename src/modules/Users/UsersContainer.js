@@ -1,5 +1,12 @@
 import {connect} from "react-redux";
-import {addUsers, follow, setUsers, toggleIsFetching, unfollow} from "../../redux/usersReducer";
+import {
+    addUsers,
+    follow,
+    setUsers,
+    toggleFollowingProgress,
+    toggleIsFetching,
+    unfollow
+} from "../../redux/usersReducer";
 import {useEffect} from "react";
 import Users from "./Users";
 import UsersAPI from "../../api/api";
@@ -19,6 +26,8 @@ function UsersContainer(props) {
                unfollow={props.unfollow}
                showMoreUsers={showMoreUsers}
                isFetching={props.isFetching}
+               toggleFollowingProgress={props.toggleFollowingProgress}
+               followingInProgress={props.followingInProgress}
         />
     )
 }
@@ -27,11 +36,12 @@ const mapStateToProps = (state) => {
     return {
         users: state.usersPage.users,
         pageNum: state.usersPage.pageNum,
-        isFetching: state.usersPage.isFetching
+        isFetching: state.usersPage.isFetching,
+        followingInProgress: state.usersPage.followingInProgress
     }
 }
 
 
-export default connect(mapStateToProps, {addUsers, follow, unfollow, setUsers, toggleIsFetching})(UsersContainer)
+export default connect(mapStateToProps, {addUsers, follow, unfollow, setUsers, toggleIsFetching, toggleFollowingProgress})(UsersContainer)
 
 
