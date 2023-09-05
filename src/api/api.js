@@ -25,22 +25,3 @@ const UsersAPI = {
 }
 
 export default UsersAPI
-// export const setUsersAPI = (pageNum) => {
-//     return instance.get(`users?count=3&page=${pageNum}`).then(response => response.data)
-// }
-//
-// export const setUserProfileAPI = (userId) => {
-//     return instance.get(`profile/${userId}`).then(response => response.data)
-// }
-//
-// export const setUserAuthDataAPI = () => {
-//     return instance.get(`auth/me`).then(response => response.data)
-// }
-//
-// export const unfollowAPI = (id) => {
-//     return instance.delete(`follow/${id}`).then(response => response.data)
-// }
-//
-// export const followAPI = (id) => {
-//     return instance.post(`follow/${id}`).then(response => response.data)
-// }

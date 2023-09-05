@@ -1,3 +1,6 @@
+import {useEffect} from "react";
+import UsersAPI from "../api/api";
+
 const SET_USER_DATA = 'SET-USER-DATA'
 
 
@@ -21,6 +24,17 @@ const authReducer = (state = initialState, action) => {
 
 
 export const setUserAuthData = (id, login, email) => ({type: SET_USER_DATA, data:{id, login, email}});
+export const authThunkCreator = (isAuth) => {
+    return (dispatch) => {
+        useEffect(() => {
+            UsersAPI.setUserAuthDataAPI().then(data => {
+                if (data.resultCode === 0) {
+                    let {id, login, email} = data.data
+                    dispatch(setUserAuthData(id, login, email));
+                }
 
-
+            });
+        }, [isAuth]);
+    }
+}
 export default authReducer;

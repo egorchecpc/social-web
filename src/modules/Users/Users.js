@@ -1,7 +1,6 @@
 import s from './Users.module.css'
 import Preloader from "../common/Preloader/Preloader";
 import {Link} from "react-router-dom";
-import UsersAPI from "../../api/api";
 
 
 function Users(props) {
@@ -21,25 +20,12 @@ function Users(props) {
                         <div className={s.userStatus}>{u.status}</div>
                     </div>
                     {u.followed
-                        ? <button disabled={props.followingInProgress.some(id => id === u.id)} onClick={() => {
-                            props.toggleFollowingProgress(true, u.id);
-                            UsersAPI.unfollowAPI(u.id).then(data => {
-                                if (data.resultCode === 0) {
-                                    props.unfollow(u.id)
-                                }
-                                props.toggleFollowingProgress(false, u.id)
-                            })
-                        }
-                        } className={s.followed}>unfollow</button>
-                        : <button disabled={props.followingInProgress.some(id => id === u.id)} onClick={() => {
-                            props.toggleFollowingProgress(true, u.id);
-                            UsersAPI.followAPI(u.id).then(data => {
-                                if (data.resultCode === 0) {
-                                    props.follow(u.id)
-                                }
-                                props.toggleFollowingProgress(false, u.id);
-                            })
-                        }} className={s.followed}>follow</button>
+                        ? <button disabled={props.followingInProgress.some(id => id === u.id)}
+                                  onClick={() => props.unfollowThunkCreator(u.id)}
+                                  className={s.followed}>unfollow</button>
+                        : <button disabled={props.followingInProgress.some(id => id === u.id)}
+                                  onClick={() => props.followThunkCreator(u.id)}
+                                  className={s.followed}>follow</button>
                     }
                 </div>
             )}
